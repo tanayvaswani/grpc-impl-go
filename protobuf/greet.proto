@@ -1,24 +1,24 @@
 syntax = "proto3";
 
-option go_package = "./proto";
+option go_package = "./protobuf";
 
 package greet_service;
 
 service GreetService {
-    // UNIARY APIs
+    // UNIARY API
     rpc SayHello(NoParams) returns (HelloResponse);
 
     // SERVER SIDE STREAMING 
-    rpc SayHelloServerStreaming(NamesList) return (stream HelloResponse);
-    
-    // CLIENT SIDE STREAMING 
-    rpc SayHelloClientStreaming(stream HelloRequest) return (MessagesList);
-    
-    // BI DIRECTIONAL STREAMING (COMMONLY USED IN THE INDUSTRY)
-    rpc SayHelloBiDirectionalStreaming(stream HelloRequest) return (stream HelloResponse);
+    rpc SayHelloServerStreaming(NamesList) returns (stream HelloResponse);
+
+    // CLIENT SIDE STREAMING
+    rpc SayHelloClientStreaming(stream HelloRequest) returns (MessagesList);
+
+    // BI DIRECTIONAL STREAMING (MOST COMMONLY USED IN THE INDUSTRY)
+    rpc SayHelloBiDirectionalStreaming(stream HelloRequest) returns (stream HelloResponse);
 }
 
-message NoParams{};
+message NoParams {}
 
 message HelloResponse {
     string message = 1;
